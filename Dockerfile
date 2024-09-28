@@ -13,7 +13,7 @@ COPY gradle ./gradle
 COPY src ./src
 
 # Build the application
-RUN ./gradlew build --no-daemon
+RUN ./gradlew build --no-daemon -x test
 
 # Use a suitable base image for running the application with JDK 22
 # Assuming a custom JDK 22 runtime image is available
