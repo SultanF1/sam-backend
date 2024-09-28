@@ -1,7 +1,6 @@
 package org.sultan.Sam.markets.service;
 
 import java.util.List;
-import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,9 +16,9 @@ class MarketServiceImpl implements MarketService {
   private final MarketEntityRepository marketEntityRepository;
 
   private Market getMarketByName(String market) {
-    final Optional<Market> optionalMarket = marketEntityRepository.findByName(market);
-    optionalMarket.orElseThrow(() -> new MarketNotFoundException(market));
-    return optionalMarket.get();
+    return marketEntityRepository
+        .findByName(market)
+        .orElseThrow(() -> new MarketNotFoundException(market));
   }
 
   @Override
