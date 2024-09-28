@@ -1,6 +1,8 @@
 package org.sultan.Sam.markets.api;
 
 import java.util.List;
+
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,13 +29,19 @@ public class MarketsController {
 
   @PostMapping("/register")
   ResponseEntity<RegisterResponse> registerMarket(
-      List<MultipartFile> files, String market, String prompt, String temperature, String entryQuestions) {
+      List<MultipartFile> files,
+      String market,
+      String prompt,
+      String temperature,
+      String entryQuestions,
+      @Email String email) {
     log.info(
-        "Received register request for market {}, prompt {}, temperature {}",
+        "Received register request for market {}, prompt {}, temperature {}, email {}",
         market,
         prompt,
-        temperature);
-    marketService.registerMarket(files, market, prompt, temperature, entryQuestions);
+        temperature,
+        email);
+    marketService.registerMarket(files, market, prompt, temperature, entryQuestions, email);
     return ResponseEntity.ok(new RegisterResponse(true, "Market Registered"));
   }
 

@@ -20,9 +20,10 @@ class MarketServiceImpl implements MarketService {
       String market,
       String prompt,
       String temperature,
-      String entryQuestions) {
+      String entryQuestions,
+      String email) {
     embedService.embedFiles(files, market);
-    marketEntityRepository.save(new Market(market, prompt, temperature, entryQuestions));
+    marketEntityRepository.save(new Market(market, prompt, temperature, entryQuestions, email));
   }
 
   @Override

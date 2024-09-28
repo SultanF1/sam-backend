@@ -20,9 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @AllArgsConstructor
 @Slf4j
-class EmberServiceImpl implements EmbedService {
+class EmbedServiceImpl implements EmbedService {
   private static final String MARKET_KEY = "market";
-  private final Logger logger = LoggerFactory.getLogger(EmberServiceImpl.class);
+  private final Logger logger = LoggerFactory.getLogger(EmbedServiceImpl.class);
   private final VectorStore vectorStore;
 
   @Override
