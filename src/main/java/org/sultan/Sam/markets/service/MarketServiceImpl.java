@@ -16,9 +16,13 @@ class MarketServiceImpl implements MarketService {
 
   @Override
   public void registerMarket(
-      List<MultipartFile> files, String market, String prompt, String temperature) {
-    files.forEach(file -> embedService.embedFile(file, market));
-    marketEntityRepository.save(new Market(market, prompt, temperature));
+      List<MultipartFile> files,
+      String market,
+      String prompt,
+      String temperature,
+      String entryQuestions) {
+    embedService.embedFiles(files, market);
+    marketEntityRepository.save(new Market(market, prompt, temperature, entryQuestions));
   }
 
   @Override
@@ -34,5 +38,10 @@ class MarketServiceImpl implements MarketService {
   @Override
   public Double getMarketTemperature(String market) {
     return Double.valueOf(marketEntityRepository.findByName(market).getTemperature());
+  }
+
+  @Override
+  public String getEntryQuestions(String market) {
+    return marketEntityRepository.findByName(market).getEntryQuestions();
   }
 }
